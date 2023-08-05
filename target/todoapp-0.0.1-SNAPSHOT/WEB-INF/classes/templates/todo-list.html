@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Todo List</title>
+    <style>
+        /* Your CSS styles here */
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <form th:action="@{/addTodo}" method="post">
+        <input type="text" name="title" placeholder="Enter your todo" required/>
+        <button type="submit">Add</button>
+    </form>
+    <ul>
+        <li th:each="todo : ${todos}" th:class="${todo.completed} ? 'completed'">
+            <form th:action="@{/updateTodo}" method="post">
+                <input type="hidden" name="id" th:value="${todo.id}" />
+                <input type="text" name="title" th:value="${todo.title}" th:readonly="${todo.completed}" />
+                <input type="checkbox" name="completed" th:checked="${todo.completed}" th:disabled="${todo.completed}" />
+                <button type="submit" th:unless="${todo.completed}">Update</button>
+            </form>
+            <form th:action="@{/deleteTodo}" method="post">
+                <input type="hidden" name="id" th:value="${todo.id}" />
+                <button type="submit" th:unless="${todo.completed}">Delete</button>
+            </form>
+        </li>
+    </ul>
+</body>
+</html>

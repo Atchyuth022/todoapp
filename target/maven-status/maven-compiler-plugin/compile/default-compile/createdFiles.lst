@@ -1,0 +1,5 @@
+com\example\todoapp\exception\GlobalExceptionHandler.class
+com\example\todoapp\repository\TodoRepository.class
+com\example\todoapp\Controller\TodoController.class
+com\example\todoapp\model\Todo.class
+com\example\todoapp\TodoAppApplication.class
